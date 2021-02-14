@@ -13,27 +13,28 @@ import java.util.concurrent.TimeUnit
 
 @Module
 @InstallIn(SingletonComponent::class)
-class NetworkModule {
+object NetworkModule {
 
     @Provides
-    fun provideHttpLoggingInterceptor() = HttpLoggingInterceptor().apply {
-        if (BuildConfig.DEBUG) level = HttpLoggingInterceptor.Level.BODY
+    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
+        return HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
     }
 
     @Provides
     fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
-            .readTimeout(15, TimeUnit.SECONDS)
-            .writeTimeout(15, TimeUnit.SECONDS)
             .build()
     }
 
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("https://pokeapi.co/api/v2/")
             .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 }
