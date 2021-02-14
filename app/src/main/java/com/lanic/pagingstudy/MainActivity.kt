@@ -1,11 +1,14 @@
 package com.lanic.pagingstudy
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.lanic.pagingstudy.base.BaseActivity
+import com.lanic.pagingstudy.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>(
+        layoutId = R.layout.activity_main
+) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
     }
 }
