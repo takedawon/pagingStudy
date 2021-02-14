@@ -26,7 +26,7 @@ class MainViewModel @Inject constructor(private val remoteRepository: RemoteRepo
                     Timber.e(throwable)
                 }.collect {
                     Timber.tag("test").e("실행")
-                    _pokeiList.postValue(it)
+                    _pokeiList.value = it
                     Timber.e(it.toString())
                 }
         }

@@ -8,7 +8,6 @@ import com.lanic.pagingstudy.R
 import com.lanic.pagingstudy.base.BaseActivity
 import com.lanic.pagingstudy.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(
@@ -33,7 +32,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
 
         viewModel.pokeiList.observe(this, Observer {
             mainAdapter.submitList(it.results)
-            Timber.tag("submitList 실행").e(it.results.toString())
         })
     }
 }
