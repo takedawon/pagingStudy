@@ -23,7 +23,7 @@ class MainViewModel @Inject constructor(private val remoteRepository: RemoteRepo
     private val _pokeiList = MutableLiveData<PokeiResponse>()
     val pokeiList: LiveData<PokeiResponse> = _pokeiList
 
-    val pokeiPagingList = createPokeiLivedata()
+    val pokeiPagingList = createPokeiLiveData()
 
     fun getPokeiList() {
         viewModelScope.launch {
@@ -49,7 +49,7 @@ class MainViewModel @Inject constructor(private val remoteRepository: RemoteRepo
         }
     }
 
-    private fun createPokeiLivedata(): LiveData<PagedList<PokeiResponse.Result>> {
+    private fun createPokeiLiveData(): LiveData<PagedList<PokeiResponse.Result>> {
         val config = PagedList.Config.Builder()
             .setInitialLoadSizeHint(20)
             .setPageSize(20)

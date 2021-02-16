@@ -15,5 +15,4 @@ class ServiceModule {
     fun providePokeiList(retrofit: Retrofit): PokeiService {
         return retrofit.create(PokeiService::class.java)
     }
-
 }

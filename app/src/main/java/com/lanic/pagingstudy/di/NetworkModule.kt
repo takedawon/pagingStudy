@@ -1,6 +1,7 @@
 package com.lanic.pagingstudy.di
 
 import androidx.viewbinding.BuildConfig
+import com.lanic.pagingstudy.utils.Const
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,7 +34,7 @@ object NetworkModule {
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://pokeapi.co/api/")
+            .baseUrl(Const.POKEI_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

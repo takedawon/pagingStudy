@@ -18,8 +18,7 @@ import javax.inject.Inject
 class PokeiDataSource @Inject constructor(
     private val scope: CoroutineScope,
     private val remoteRepository: RemoteRepository
-) :
-    PageKeyedDataSource<String, PokeiResponse.Result>() {
+) : PageKeyedDataSource<String, PokeiResponse.Result>() {
     override fun loadInitial(
         params: LoadInitialParams<String>,
         callback: LoadInitialCallback<String, PokeiResponse.Result>
@@ -45,7 +44,7 @@ class PokeiDataSource @Inject constructor(
 
         val offset = data[0].split("=")[1]
         val limit = data[1].split("=")[1]
-        
+
         scope.launch {
             remoteRepository.getPokeiList(offset, limit)
                 .catch { throttle ->
