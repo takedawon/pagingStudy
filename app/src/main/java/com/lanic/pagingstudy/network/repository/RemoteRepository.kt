@@ -13,8 +13,15 @@ class RemoteRepositoryImpl(private val pokeiService: PokeiService) : RemoteRepos
     override fun getPokeiList(): Flow<PokeiResponse> {
         return flow {
             emit(pokeiService.getPokeiList())
-        }.flowOn(Dispatchers.Default)
+        }.flowOn(Dispatchers.IO)
     }
+
+    override fun getPokeiList(offset: String, limit: String): Flow<PokeiResponse> {
+        return flow {
+            emit(pokeiService.getPokeiList(offset, limit))
+        }.flowOn(Dispatchers.IO)
+    }
+
 
     override fun getPokeiDetail(uid: Int): Flow<PokeiDetailResponse> {
         return flow {
@@ -26,6 +33,8 @@ class RemoteRepositoryImpl(private val pokeiService: PokeiService) : RemoteRepos
 interface RemoteRepository {
 
     fun getPokeiList(): Flow<PokeiResponse>
+
+    fun getPokeiList(offset: String, limit: String): Flow<PokeiResponse>
 
     fun getPokeiDetail(uid: Int): Flow<PokeiDetailResponse>
 }

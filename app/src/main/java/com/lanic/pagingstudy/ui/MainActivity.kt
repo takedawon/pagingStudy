@@ -30,8 +30,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
 
         viewModel.getPokeiList()
 
-        viewModel.pokeiList.observe(this, Observer {
-            mainAdapter.submitList(it.results)
+        viewModel.pokeiPagingList.observe(this, Observer {
+            mainAdapter.submitList(it)
         })
     }
 }
